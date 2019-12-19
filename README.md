@@ -7,7 +7,7 @@ colorfulog是一个简单且易于扩展的日志框架，其本身提供的功�
 
 	go get -u github.com/CreditTone/colorfulog
 
-##使用日志输出
+## 使用
 ```golang
 import(
 	colorfulog "github.com/CreditTone/colorfulog"
@@ -20,5 +20,5 @@ func main() {
 }
 ```
 
-##输出效果如下
+## 输出效果如下
 ![测试效果图](https://raw.githubusercontent.com/CreditTone/staticfiles/master/1576747983685.jpg "测试效果图")
