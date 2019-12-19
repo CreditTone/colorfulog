@@ -20,5 +20,6 @@ func main() {
 	colorfulog.Error("错误日志，颜色为红色!")
 }
 ```
-##输出效果如下
 
+##输出效果如下
+![测试效果图](https://raw.githubusercontent.com/CreditTone/staticfiles/master/1576747983685.jpg "测试效果图")
