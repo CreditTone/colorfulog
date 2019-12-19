@@ -10,7 +10,7 @@ colorfulog是一个简单且易于扩展的日志框架，其本身提供的功�
 ##使用日志输出
 ```golang
 import(
-	"github.com/CreditTone/colorfulog"
+	colorfulog "github.com/CreditTone/colorfulog"
 )
 
 func main() {
