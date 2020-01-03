@@ -25,6 +25,7 @@ type Logger struct {
 	prefix string
 	flag   int
 	out    io.Writer
+	outputFile *os.File
 }
 
 func init() {
@@ -57,6 +58,19 @@ func itoa(buf *[]byte, i int, wid int) {
 	// i < 10
 	b[bp] = byte('0' + i)
 	*buf = append(*buf, b[bp:]...)
+}
+
+func SetOutputfilename(filename string) error {
+	return std.SetOutputfilename(filename)
+}
+
+func (l *Logger) SetOutputfilename(filename string) error {
+	f, err := os.Create(filename)
+	if err != nil{
+		return err
+	}
+	l.outputFile = f
+	return nil
 }
 
 func (l *Logger) formatHeader(buf *[]byte, t time.Time, file string, line int) {
@@ -134,12 +148,16 @@ func (l *Logger) outputColorful(colorDef, prefixFlag string, calldepth int, s st
 	if len(s) == 0 || s[len(s)-1] != '\n' {
 		buff = append(buff, '\n')
 	}
+	noColorfulBuff := buff
 	if colorDef == "red" {
 		buff = []byte(color.Sprintf("@r%v", string(buff)))
 	} else if colorDef == "yellow" {
 		buff = []byte(color.Sprintf("@y%v", string(buff)))
 	}
 	_, err := l.out.Write(buff)
+	if l.outputFile != nil{
+		io.WriteString(l.outputFile, string(noColorfulBuff))
+	}
 	return err
 }
 
